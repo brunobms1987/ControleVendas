@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title> Sistema de Cadastro de Usuários </title>
+        <h:outputStylesheet library="css" name="estilo.css" />
+    </h:head>
+    <h:body>
+        <p:layout>
+            <p:layoutUnit position="center" collapsed="false">
+                <h:form id="login">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel for="usuario" value="Informe o nome de usuário: " />
+                        <p:inputText id="usuario" value="#{loginBean.modelo.usuario}" />
+                        
+                        <p:outputLabel for="senha" value="Informe a senha: " />
+                        <p:password id="senha" value="#{loginBean.modelo.senha}" />
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="2">
+                        <p:commandButton id="btnEntrar" value="Entrar" update="login" action="#{loginBean.login}"/>
+                        <p:commandButton id="btnCadastrar" value="Novo Usuário"  action="#{loginBean.cadastro}"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</ui:composition>

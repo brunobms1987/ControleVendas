@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:form id="menuForm">
+        <p:menubar>
+            <p:menuitem value="Início" url="index.xhtml"></p:menuitem>
+            <p:submenu label="Usuários">
+                <p:menuitem value="Cadastrar" outcome="/usuarios/cadastrar" />
+                <p:menuitem value="Listar" outcome="/usuarios/listar" />
+            </p:submenu>
+            <p:submenu label="Perfis">
+                <p:menuitem value="Cadastrar" outcome="/perfil/cadastrar" />
+                <p:menuitem value="Listar" outcome="/perfil/listar" />
+            </p:submenu>
+            <p:submenu label="Livros">
+                <p:menuitem value="Cadastrar" outcome="/livros/cadastrar" />
+                <p:menuitem value="Listar" outcome="/livros/listar" />
+            </p:submenu>
+            <p:submenu label="Vendas">
+                <p:menuitem value="Cadastrar" outcome="/vendas/cadastrar" />
+                <p:menuitem value="Listar" outcome="/vendas/listar" />
+            </p:submenu>
+            <p:menuitem value="Sair" action="#{loginBean.logout}" />
+        </p:menubar>
+    </h:form>
+</ui:composition>
+

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/estrutura/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="conteudo">
+        <h:form id="cadastrar">
+            <p:panelGrid columns="3">
+                <p:outputLabel for="nome" value="Nome: " />
+                <p:inputText id="nome" value="#{usuarioBean.modelo.nome}" required="true" label="Nome"
+                             requiredMessage="#{mensagens.mensagemCampoObrigatorio}">
+                    <f:validateLength minimum="2" />
+                </p:inputText>
+                <p:message for="nome" display="icon-text"/>
+                
+                <p:outputLabel for="email" value="E-mail: " />
+                <p:inputText id="email" value="#{usuarioBean.modelo.email}" required="true" label="E-mail">
+                    <f:validateLength minimum="2" />
+                </p:inputText>
+                <p:message for="email" display="text" />
+                
+                <p:outputLabel for="usuario" value="Usuário: " />
+                <p:inputText id="usuario" value="#{usuarioBean.modelo.usuario}" required="true" label="Usuário">
+                    <f:validateLength minimum="2" />
+                </p:inputText>
+                <p:message for="usuario" display="icon-text" />
+                
+                <p:outputLabel for="senha" value="Senha: " />
+                <p:password id="senha" value="#{usuarioBean.modelo.senha}" required="true" label="Senha">
+                    <f:validateLength minimum="2" />
+                </p:password>
+                <p:message for="senha" display="icon-text" />
+                
+                <p:outputLabel for="dataNascimento" value="Data de Nascimento: "/>
+                <p:calendar id="dataNascimento" value="#{usuarioBean.modelo.dataNascimento}" mode="popup" pattern="dd/MM/yyyy" 
+                            mask="true" required="true" label="Data de Nascimento"/>
+                <p:message for="dataNascimento" display="icon"/>
+                
+                <h:outputLabel for="ativo" value="Usuário está ativo?" />
+                <h:selectBooleanCheckbox id="ativo" value="#{usuarioBean.modelo.ativo}"/>
+                <p:message for="ativo" display="icon-text" />
+                
+                <h:outputLabel for="perfil" value="Perfil do usuário:" />
+                <p:selectOneMenu required="false" id="perfil" value="#{usuarioBean.modelo.perfil}">
+                    <f:selectItems value="#{perfilBean.listaSelect}"></f:selectItems>
+                </p:selectOneMenu>
+                <p:message for="perfil" display="icon-text" />
+                
+            </p:panelGrid>
+            <h:panelGrid columns="1">
+                <p:outputLabel for="arquivo" value="Foto: " />
+                <p:fileUpload id="arquivo" fileUploadListener="#{usuarioBean.uploadFoto}"
+                              auto="true" update="foto"
+                              fileLimit="3"
+                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/">
+                    <p:graphicImage style="height: 200px; width: 150px" id="foto"
+                                    value="../../uploads/imagens/#{usuarioBean.modelo.foto}" />
+                </p:fileUpload>
+            </h:panelGrid>
+            <p:panelGrid columns="4">
+                <p:button href="index.xtml" value="Cancelar" />
+                
+                <p:commandButton value="Limpar campos" />
+                
+                <p:commandButton value="Salvar" action="#{usuarioBean.cadastrar}" update="cadastrar, messages2" />
+            </p:panelGrid>
+            
+            <p:messages id="messages2"  showDetail="true" />
+            <p:growl id="messages" rendered="#{not facesContext.validationFailed}" showDetail="true" sticky="true" />
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

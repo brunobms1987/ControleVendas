@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/estrutura/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="conteudo">
+        <h:form id="cadastrar">
+            <p:panelGrid columns="3">
+                <p:outputLabel for="nome" value="Nome: " />
+                <p:inputText id="nome" value="#{perfilBean.selecionado.nome}" required="true" label="Nome"
+                             requiredMessage="#{mensagens.mensagemCampoObrigatorio}">
+                    <f:validateLength minimum="2" />
+                </p:inputText>
+                <p:message for="nome" display="icon-text"/>
+                
+            </p:panelGrid>
+            <p:panelGrid columns="4">
+                <p:button href="index.xtml" value="Cancelar" />
+                
+                <p:commandButton value="Limpar campos" />
+                
+                <p:commandButton value="Salvar" action="#{perfilBean.cadastrar}" update="cadastrar" />
+            </p:panelGrid>
+            
+            <p:growl id="messages" rendered="#{not facesContext.validationFailed}" showDetail="true" sticky="true" />
+            
+        </h:form>
+    </ui:define>
+</ui:composition>
